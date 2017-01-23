@@ -8,7 +8,7 @@
  * @link        https://github.com/jebbdomingo/nucleonplus for the canonical source repository
  */
 
-class ComPhlpostModelShippingrates extends KObject
+class ComPhlpostServiceShippingrates extends KObject
 {
     /**
      * Get the rate based on destination and weight of the package
@@ -23,7 +23,7 @@ class ComPhlpostModelShippingrates extends KObject
         $result = false;
 
         // Get rate per grams
-        $identifier = $destination == 'manila' ? 'intra-province' : 'inter_land';
+        $identifier = $destination == 'manila' ? 'intra-province' : 'inter-land';
         $result     = $this->_getRate($identifier, $weight);
 
         return $result;
@@ -31,7 +31,7 @@ class ComPhlpostModelShippingrates extends KObject
 
     protected function _getRate($destination, $weight)
     {
-        $table = $this->getObject('com://admin/phlpost.database.table.destinations');
+        $table = $this->getObject('com:phlpost.database.table.destinations');
         $query = $this->getObject('database.query.select')
             ->table('phlpost_destinations AS tbl')
             ->columns('tbl.phlpost_destination_id, _rates.rate AS rate')
